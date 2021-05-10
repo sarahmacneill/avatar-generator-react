@@ -21,9 +21,12 @@ export default function Canvas() {
       ctx.drawImage(img2.current, 10, 40, 70, 70);
       ctx.font = "40px Courier";
       ctx.fillText('say cheese!', 210, 75);
-      setDataUrl(canvas.current.toDataURL());
     }
   });
+
+  useEffect(() => {
+    setDataUrl(canvas.current.toDataURL());
+  }, [ctx])
 
   return(
     <div className="container">
@@ -33,8 +36,8 @@ export default function Canvas() {
       <div className="m-3">
         <button className="btn btn-primary btn-lg" onClick={() => {navigator.clipboard.writeText(dataUrl)}}>Copy image link</button>
       </div>
-      <img ref={img} src={cheese} style={{display: 'none'}}/>
-      <img ref={img2} src={smile} style={{display: 'none'}}/>
+      <img ref={img} src={cheese} style={{display: 'none'}} alt="" />
+      <img ref={img2} src={smile} style={{display: 'none'}} alt="" />
     </div>
   )
 }
